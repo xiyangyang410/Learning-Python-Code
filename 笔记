@@ -1,0 +1,2027 @@
+1. 编程语言
+	解决问题
+		用户: 问题空间
+		计算机: 解空间
+
+	机器代码 -> 微码编程 -> 高级语言
+
+	面向过程
+		以指令为中心, 由指令处理数据
+		如何组织代码解决文件
+	面向对象
+		以数据为中心, 所有的处理代码都围绕数据展开
+		如何设计数据结构和组织数据, 并提供对类数据所允许处理操作
+
+2. Python的实现
+	CPython: 原始, 标准的实现方式
+	Jython: 用于与Java语言集成的实现
+	IronPython: 用于与.NET框架集成的实现
+
+3. Python性能优化工具
+	Psyco
+		Python语言的一个苦战模块, 可以即时对程序代码进行专业的算法优化, 可以在一定程度上提高程序的执行速度, 尤其是在程序中有大量循环操作时
+		目前开发工作已经停止, 由PyPy所接替
+	PyPy
+		PyPy是用Python实现在Python解释器
+		Python语言的动态编译器, 是Psyco的后继项目
+		可以运行的Linux的32位和64位, MacOS和WIndows的32位平台中
+	Shed Skin
+		Python编译器, 能够将Python代码转换成优化的C++代码
+
+4. 部署开发环境
+	简单方法
+		编译安装新版本至某特定路径
+		pyenv
+
+	#!/usr/bin/env python
+		在环境变量中查找Python的执行程序
+
+5. Python程序设计总述
+	数据结构
+		通过某种方式(例如对元素进行编号)组织在一起的数据元素的集合, 这些数据元素可以是数字或者字符, 甚至可以是其他的数据结构
+		Python的最基本数据结构是序列
+		序列中的每个元素被分配一个序号, 即元素的位置, 也成为索引, 索引从0开始编号
+		Python包含6种内建的数据序列: 列表, 元组, 字符串, Unicode字符串, buffer对象和xrange对象
+
+	Python的关键要素
+		基本数据类型
+			任何程序语言都必须能够表示基本数据项
+			Python中的基本数据类型有:
+				Integral类型
+					整型: 不可变类型
+					布尔型: true, false
+
+				浮点类型
+					浮点数
+					复数
+					十进制数据
+
+				字符串
+			dir()		查看对象定义的函数
+			id()		查看变量引用的对象的位置
+			type()		查看变量引用的对象的类型
+
+		对象引用
+			Python将所有数据存为内存对象
+
+			Python中, 变量事实上是事项内存对象的引用
+
+			动态类型: 在任何时刻, 只要需要, 某个对象引用都可以重新引用一个不同的对象(可以是不同的数据类型)
+
+			内建函数type()用于返回给定数据项的数据类型
+
+			"="用于将变量名与内存中的某对象绑定: 若对象实现存在, 就直接进行绑定. 否则, 则由"="创建引用对象
+
+			变量命名规则
+				只能包含字母, 数字和下划线, 切不能以数字开头
+				区分字母大小写
+				禁止使用保留字
+					Python2与Python3的保留字有所不同
+
+			命名惯例
+				以单一下划线开头的变量名(_x)不会被from module import * 语句导入
+
+				前后都有双下划线的变量名(__x__)说以系统定义的变量名, 对Python解释器有特殊意义
+
+				以两个下划线开头但结尾没有下划线的变量名(__x)是类的本地变量
+
+				交互式模式下, 变量名"_"用于保存最后表达式的结果
+
+			注意: 变量名没有类型. 对象才有类型
+
+		组合数据类型
+			数据结构: 通过某种方式(例如对元素进行编号)组织在一起的数据元素的集合
+
+			Python常用的组合数据类型
+				序列类型
+					列表: 使用[]创建
+					元组: 使用()创建
+					字符串也属于序列类型
+				集合类型
+					集合
+				映射类型
+					字典
+
+				列表是可变序列, 元组是不可变序列
+
+				Python中, 组合数据类型也是对象, 因此可以嵌套
+					['hello','world',[1,2,3]]
+
+				实质上, 列表和元组并不是真正存储数据库, 而是存放对象引用
+
+				Python对象可以具有其可以被调用的特定方法(函数)
+
+				元组, 列表以及字符串等数据类型是"有大小的", 即, 其长度(所含元素个数)可使用内置函数len()测量
+
+		逻辑操作符
+			逻辑操作符是任何程序设计语言的基本功能
+
+			Python提供了4组逻辑预算
+				身份操作符
+					is
+						判定左端对象引用是否相同于右端对象引用
+						也可以与None进行
+				比较操作符
+					<, >, <=, >=, !=, ==
+				成员操作符
+					in或not in: 测试成员关系
+				逻辑运算符
+					and, or, not
+
+		控制流语句
+			控制流语句是过程式编程语言的基本控制机制
+			Python的常见控制流语句
+				if
+				while
+				for...in
+				try
+
+		算术操作符
+			Python提供了完整的算术操作符
+
+			很多的Python数据类型也可以使用增强的赋值操作符, 如+=, -=等
+
+			同样的功能, 使用增强型赋值操作符的性能更好
+
+			Python的int类型是不可变的, 因此, 增强型赋值的实际过程是创建了一个新的对象来存储结构后将变量名执行了重新绑定
+
+		输入/输出
+			现实中, 具有实际功能的程序必须能够读取输入(如从键盘或文件中), 以及产生输出, 并写到终端或文件中
+
+			Python的输入输出
+				输出
+					Python3: print()函数
+					Python2: print语句
+				输入
+					input()
+					raw_input()
+
+				Python解释器提供了3种标准文件对象, 分别为标准输入, 标准输出和标准错误, 它们在sys模块中分别以sys.stdin, sys.stdout, sys.stderr形式提供
+
+				Python的print语句实现打印--一个对程序员友好的标准输出接口
+
+				从技术角度来讲, print是把一个或多个对象转换为其文本表达式, 然后发送给标准输出或另一个类似的文件流
+					在Python中, 打印与文件和流的概念联系紧密
+						文件写入方法是把字符串写入到任意文件
+
+						print默认把对象打印到stdout流, 并添加了一些自动的格式化
+
+					实质上, print语句只是Python的人性化特性的具体实现, 他提供了sys.stdout.write()的简单接口, 再加上些默认的格式设置
+
+					print接收一个逗号分隔符的对象列表, 并未行尾自动添加一个换行符, 若不需要, 则在最后一个元素后添加逗号
+
+				格式
+					Python2:
+					print "String %format1 %format2 ..." %(variable1, variable2, ...)
+
+					格式化符号
+						d,i			十进制整数或长整数
+						u			无符号整数或长整数
+						o			八进制整数或长整数
+						x			十六进制整除或长整数
+						X			十六进制整数(大写字母)
+						f			浮点数, 如[-]m.dddddd
+						e			浮点数, 如[-]m.dddddde±xx
+						E			浮点数, 如[-]m.ddddddE±xx
+						g,G			指数小于-4或更高精度时使用%e或%E, 否则使用%f
+						s			字符串或任意对象, 格式化代码使用str()生成字符串
+						r			同repr()生成的字符串
+						c			单个字符
+						%			字面量%
+
+					%后可以使用修饰符:
+						%[(name)][flags][width][.precision]typecode
+							位于括号中的一个属于后面的字典的键名, 用于选出一个具体项
+
+							下面标志中的一个或多个
+								-	表示左对齐, 默认为右对齐
+								+	表示包含数字符号, 整数也会带+
+								0	表示一个零填充
+
+							一个指定最小宽度的数字
+
+							一个小数点, 用于按照精度分割字段的宽度
+
+							一个数字, 指定要打印字符串中的最大字符个数, 浮点中小数点之后的位数, 或者整数的最小位数
+
+					当字典在一个格式化操作的右边时, 他会让格式化字符串通过字典中的键来访问变量, 可以配合vars函数使用, 如
+						>>> food='spam'
+						>>> age=20
+						>>> vars()
+						{'age': 20, 'food': 'spam', ...}
+						>>> "%(age)d %(food)s" % vars()
+						'20 spam'
+
+				format()函数
+					内置函数format运行主体对象的__format__方法, 对于每个被格式化项目, str.format方法都是内部的
+
+					通过位置访问
+						>>> template='{0},{1} and {2}'
+						>>> template.format('sapm','ham','eggs')
+						'sapm,ham and eggs'
+					通过关键字访问
+						>>> template='{motto},{port} and {food}'
+						>>> template.format(motto='spam', port='ham', food='eggs')
+						'spam,ham and eggs'
+					都使用
+						>>> template='{motto}, {0} and {food}'
+						>>> template.format('ham',motto='spam', food='eggs')
+						'spam, ham and eggs'
+
+					format创建并返回一个新的字符串对象
+						>>> X='{motto}, {0} and {food}'.format(42, motto=3.14, food=[1, 2])
+						>>> X
+						'3.14, 42 and [1, 2]'
+						>>> X.split('and')
+						['3.14, 42', '[1, 2]']
+
+					format也支持进制转换
+						>>> '{0:X}, {1:o}, {2:b}'.format(255, 255, 255)
+						'FF, 377, 11111111'
+						>>> bin(255), int('11111111', 2), 0b11111111
+						('0b11111111', 255, 255)
+						>>> hex(255), int('FF', 16), 0xFF
+						('0xff', 255, 255)
+						>>> oct(255), int('377', 8), 0o377
+						('0o377', 255, 255)
+
+					针对数字的千分割位语法
+						>>> '{0:,d}'.format(99999999)
+						'99,999,999'
+
+					相对数可以省略
+						>>> '{:d} {:d}'.format(123,456)
+						'123 456'
+
+					格式化参数可以通过嵌套格式化语法从参数列表动态获取
+						>>> '{0:.{1}f}'.format(1/3.0, 4)
+						'0.3333'
+						>>> '%.*f' %(4,1/3.0)
+						'0.3333'
+
+					其他用法
+						>>> format(1.2345, '.2f')
+						'1.23'
+						>>> '%.2f' %1.2345
+						'1.23'
+
+		函数的创建与调用
+			函数是实现模块化编程的基本组件
+			Python使用def语句定义函数
+
+			函数可以参数化, 通过传递不同的参数来调用
+
+			每个Python函数都有一个返回值, 默认为None, 也可以使用"return value"明确定义返回值
+
+			def语句会创建一个函数对象, 并同时创建一个指向函数的对象引用
+				函数也是对象, 可以存储在组合数据类型中, 也可以作为参数传递给其他函数
+
+				callable()可用于测试函数是否可调用
+
+			Python有众多内置函数
+			Python标准库拥有众多内置模块, 这些模块拥有大量函数
+				Python模块实际上就是包含Python代码的.py文件, 其拥有自定义的函数与类及变量等
+				导入模块使用import语句进行, 后跟模块名称(不能指定模块文件名后缀.py)
+				导入一个模块后, 可以访问其内部包含的任意函数, 类以及变量
+				使用dir(__builtin__)可以查看Python内置模块
+
+6. Python编程风格
+	语句和语法
+		注释
+			#		可以从一行的任意地方开始
+		续行
+			\
+			'''	'''	三个引号, 闭合操作符, 单一语句跨多行
+		代码组
+			缩进相同的一组语句构成的一个代码块
+			首行以关键字开始, 如if, while等, 以冒号结束
+			Python使用缩进来分隔代码组, 用一代码组的代码行必须严格左对齐, 否则视为语法错误
+		同一行放置多个语句
+			以分号作为分隔符
+		模块
+			每一个Python脚本文件都可以被当成是一个模块
+			模块里的代码可以是一段直接执行的脚本, 也可以是一些类似库函数的代码从而可以有别的模块执行导入(import)
+
+	标识符
+		标识符是计算机语言中允许作为名字的有效字符串集合
+			其中有一部分是关键字, 他们是语言的标识符, 因此是保留字, 不能用于其他用途
+			Python还有称为"内建"的标识符集合, 虽不是保留字, 仍不推荐使用这些特别的名字
+
+		Python标识符
+			第一个字符只能使用字母或下划线
+			余下的字符可以使用字母, 数字或下划线
+			区分字母大小写
+
+	基本编程风格
+		注释
+			既不能缺少注释, 亦要避免过度注释
+		文档
+			Python允许通过__doc__动态获得文档字串
+		缩进
+			统一缩进4个字串
+		标识符名称
+			见名知义
+
+	Python文件主程序
+		主程序
+			无论当前模块是被别的模块导入还是作为脚本直接执行, 都会执行这部分代码
+
+		注意: 所有的模块都有能力执行代码
+			最高级别的Python语句(没有缩进的)在模块被导入时就会执行, 无论是否真的需要执行
+
+			妥当的做法: 除了那些真正需要执行的代码以外, 所有的功能代码都通过函数建立, 因此
+				仅在主程序模块中编写大量的顶级可执行代码
+				用于被导入的模块只应该存放在较少的顶级执行代码
+
+		__name__指示模块应该如何被加载
+			每个模块都有一个名为__name__的内建变量, 此变量会根据调用此模块的方式发生变化
+			如果模块是被导入, __name__的值是模块的名字
+			如果模块是直接运行, __name__的值是'__main__'
+
+7. Python对象类型及其运算
+	Python程序中保存的所有数据都是围绕着对象这个概念展开的
+		程序中存储的所有数据都是对象
+
+		每个对象都有一个身份, 一个类型和一个值
+			例如, school="MIT"会以"MIT"创建一个字符串对象, 其身份是指向他所在内存中所处位置的指针, 而school就是引用这个具体位置的名称
+
+		对象的类型也称为对象的类别, 用于描述对象的内部表示及他支持的方法和操作
+
+		创建特定类型的对象时, 有时也将该对象称为该类型的实例(instance)
+
+		实例被创建后, 其身份和类型就不可改变
+			若对象值是可修改的, 则称为可变对象
+			若对象的值是不可修改的, 则称为不可变对象
+
+		若某个对象包含其他对象的引用, 则将其称为容器
+
+		大多数对象都拥有大量特有的数据属性和方法
+			属性: 对象相关的值
+			方法: 被调用时将在对象上执行某些操作的函数
+			使用点.运算符可以访问属性和方法
+
+	对象的身份与类型
+		Python内置函数id()可返回一个对象的身份, 即该对象在内存中的位置
+
+			is运算符用于比较两个对象的身份
+
+			type()用于返回一个对象的类型
+
+			对象类型本身也是一个对象, 称为对象的类
+				该对象的定义是唯一的, 且对于某类型的所有实例都是相同的
+				所有类型对象都是一个指定的名称, 可用于执行类型检查, 如list, dict
+
+		两个对象比较
+			<1> 值比较: 对象中的数据是否相同
+			<2> 身份比较: 两个变量名引用的是否为同一对象
+			<3> 类型比较: 两个对象的类型是否相同
+
+		Python核心数据类型
+			数字
+				int, long, float, complex
+			字符串
+				str, unicode
+			列表				如 ['one','two','three']
+				list
+			字典				如 {'name':'Brahma','age':20}
+				dict
+			元组				如 (32,'spam','hehe')
+				tuple
+			文件				如 myFile=open('/tmp/file','r')
+				file
+			集合				如 set('abc'),{'a','b','c'}
+				set, frozenset
+			其他类型			类型, None, 布尔值
+			编程单元类型		函数, 模块, 类
+			与实现相关的类型	编译的代码堆栈跟踪
+
+		其他文件类工具: pipes, fifos, sockets
+
+		类型转换
+			str(), repr()或format(): 将非字符型数据转换为字符
+				str()的结果同print
+				repr()可以表示程序中某个对象的精确值
+				format()利用特定格式将其转换为字符串
+			int(): 转为整数
+			float(): 转为浮点数
+
+			list(s): 将字串s转换为列表
+			tuples(s): 将字串s转换为元组
+			set(s): 将字串s转换为集合
+			frozenset(s): 将字串s转换为不可变集合
+
+			chr(x): 将整数转换为字符
+			ord(x): 将字符转换为整数值
+			hex(x): 将整数转换为16进制字串
+			bin(x): 将整数转换为2进制字串
+			oct(x): 将整数转换为8进制字串
+
+			dict(d): 创建字典
+				d必须是(key, value)的元组序列
+
+	数字类型
+		Python的数字字面量: 布尔型, 整数, 浮点数, 复数
+			True: 1
+			False: 0
+
+	序列类型
+		序列表示索引为非负整数的有序对象集合, 包括字符串, 列表和元组
+			字符串是字符的
+			列表和元组是任意Python对象的序列
+
+		字符和元组属于不可变序列, 而列表则支持插入, 删除和替换元素
+
+		所有序列都支持迭代
+
+		序列类型
+			字符类型
+				字符串字面量: 把文本放入单引号, 双引号或三引号中
+
+				在Python2中, 若要是用unicode编码, 应在字串之前使用u进行标识
+
+				文档字串: 模块, 类或函数的第一条语句是一个字符的话, 该字符串就称为文档字符串, 可以使用__doc__属性引用
+
+				适用于字符串的操作
+					Python2提供两种字符串对象类型
+						字节字符串: 字节(8bit)序列
+						unicode字符串: unicode字符(16bit)序列
+							Python可以使用32bit整数保存unicode字符, 但此为可选特性
+
+					字符串的一些内置方法
+						str.capitalize()
+							首字母变大写
+						str.index(sub [, start [,end]])
+							找到指定子字符串sub首次出现的位置, 否则报错
+						str.join(t)
+							使用str作为分隔符连接序列t中的字符串
+						str.lower()
+							转换为小写形式
+						str.replace(old, new[,maxreplace])
+							替换一个子字符串
+						str.split([sep [,maxsplit]])
+							使用sep作为分隔符对一个字符串进行划分, maxsplit是划分的最大次数
+						str.strip([chrs])
+							删掉chrs开头和结尾的空白或字符
+						str.upper()
+							将一个字符串转换为大写形式
+
+			列表类型
+				容器类型
+					任意对象的有序集合
+					通过索引访问其中的元素
+					可变对象
+					支持异构
+					任意嵌套
+					长度可变
+
+				支持在原处修改
+					修改指定的索引元素
+						li[1]=20
+					修改指定的分片
+						li[1:3]=[]
+					删除语句
+						del(li[1:])
+					内置方法
+						li.append(23): 在最后附加元素23
+						li.insert(1,23): 在索引为1的位置插入23
+						li.pop(2): 弹出索引为2的元素, 若不指定索引, 则弹出最后一个
+							pop()会返回所弹出的元素
+						li.remove(23): 删除值为23的元素
+						li.reverse(): 逆序排列, 直接修改列表
+						li.sort(): 列表排序
+
+				列表操作
+					l1+l2: 合并两个列表, 不会修改原列表, 返回一个新的列表
+					l1*N: 把l1重复N次, 返回一个新列表
+
+					in: 成员关系判断, 用法:
+						object in container
+					not in: 成员关系判断, 用法:
+						object not in container
+
+				列表解析: []
+
+				列表复制方式
+					l1=[1,2,3,4]
+					l2=l1
+
+					import copy
+					l2=copy.deepcopy(l1)
+
+					l2=l1[:]
+
+			元组
+				表达式符号: ()
+
+				容器类型
+					任意对象的有序集合
+					通过索引访问其中的元素
+					不可变对象
+					长度固定
+					支持异构
+					任意嵌套
+
+				常见操作
+					()
+					(1,)
+					(1,2)
+
+					t1+t2
+					t1*N
+
+					in
+					not in
+
+				虽然元组本身不可变, 但若元组内嵌套了可变类型的元素, 那么此类元素的改变不会返回新元组
+
+			适用于所有序列的操作和方法
+				[i]: 索引运算符
+				[i:j]为切片预算符
+				[i:j:stride]: 为扩展切片运算符
+
+				min(s)和max(s)只适用于能够对元素排序的序列, 返回序列的最小值或最大值
+				sum(s)只适用于数字序列
+				all(s)检查s中的所有项是否为True
+				any(s)检查s中的任意项是否为True
+
+	字典: dict
+		在其他编程语言中又称作关联数组, 或散列表
+
+		通过键实现元素存取
+		无序集合
+		可变类型容器, 长度可变
+		支持异构
+		支持嵌套
+
+		{'key1': value1, 'key2': value2, ...}
+		{} 空字典
+
+		字典复制: d2=d1.copy()
+
+		d1.iteritems(): 返回一个迭代器对象
+
+	类: 数据+方法
+		属性: 数据
+			返回一个数据, 显示则要使用print语句
+		方法: 操作()
+			调用: 执行一段代码
+
+			3+5: 3.__add__(5)
+
+			可调用对象: 使用callable()查询
+
+	字串: '' , "" , ''' ''' , """ """
+	列表: []
+	元组: ()
+	字典: {}
+
+	获取帮助
+		获取对象支持使用的属性或方法: dir()
+		某方法的具体使用帮助: help()
+		获取可调用对象的文档字串: print obj.__doc__
+
+	集合:
+		无序排列, 可哈希
+		支持集合关系测试
+		成员关系测试
+			in
+			not in
+			迭代
+
+		不支持: 索引, 元素获取, 切片
+
+		集合的类型: set(), frozenset()
+
+		集合没有特定语法格式, 只能通过工厂函数创建
+
+		集合类型的方法和操作
+			len(s)				返回s中项目数
+			max(s)				返回最大值
+			min(s)				返回最小值
+			s.copy()			制作s的一份副本
+			s.difference(t)		求差集, 返回所有在s中, 但不在t中的项目
+				或s-t
+			s.intersection(t)	求交集, 返回所有同时在s和t中的项目
+				或s&t
+			s.isdisjoint(t)		若s和t没有相同项, 则返回True
+			s.issubset(t)		若s是t的一个子集, 则返回True
+			s.issuperset(t)		若s是t的一个超集, 则返回True
+			s.symmetric_difference(t)	求对称差集, 返回所有在s或t中, 但又不同时在这两个集合中的项
+				或s^t
+			s.union(t)			求并集, 返回所有在s或t中的项
+				或s|t
+
+	容器, 类型, 对象
+		<1> 列表, 元组, 字典字面量可以在不使用续行符的情况下跨行定义, 最后一个元素后也可以加上逗号
+
+		<2> 所有对象都有引用计数, 为某对象指定了新名称, 或将某对象放进一个容器中时, 都会导致其引用计数增加, 当引用计数为0时, 垃圾回收器将回收此对象
+
+		<3> 列表和字典都支持两种类型的复制操作: 浅复制和深复制
+			深复制可使用copy模块中的deepcopy()实现
+
+		<4> Python中的所有对象都是"第一类的", 这意味着使用标识符命名的所有对象都具有相同状态, 于是, 能够命名的所有对象都可以直接当数据进行处理
+
+		<5> 所有序列都支持迭代
+
+		<6> 所有序列都支持的操作和方法
+			s[i]
+			s[i:j]
+			s[i:j:stride]
+			len(s)
+			min(s)
+			max(s)
+			sum(s)
+			all(s)
+			any(s)
+			s1+s2: 连接
+			s1*N: 重复N次
+			obj in s1: 成员关系判断
+			obj not in s1
+
+		<7> 可变序列的操作
+			s[index] = value		元素赋值
+			s1[i:j] = t				切片赋值
+			del s1[index]			删除元素
+			del s1[i:j]				删除切片
+			del s1[i:j:stride]		删除扩展切片
+
+8. Python的表达式和语句
+	Python中常用的表达式操作符
+		算术运算
+			x + y , x - y
+			x * y, x / y, x // y, x % y
+
+		逻辑运算
+			x or y, x and y, not x
+
+		成员关系运算
+			x in y, x not in y
+
+		对象实例测试
+			x is y, x not is y
+
+		比较运算
+			x < y, x > y, x <= y, x >= y, x == y, x != y
+
+		位运算
+			x | y, x & y, x ^ y, x << y, x >> y
+
+		一元运算
+			-x, +x, ~x
+
+		幂运算
+			x ** y
+
+		索引和分片
+			x[i], x[i:j], x[i:j:stride]
+
+		调用
+			x(...)
+
+		取属性
+			x.attribute
+
+		元组: (...)
+		序列: [...]
+		字典: {...}
+
+		三元选择表达式
+			x if y else z
+
+		匿名函数
+			lambda args: expression
+
+		生成器函数发送协议
+			yield x
+
+	运算优先级
+		(...), [...], {...}
+		s[i], s[i:j]
+		s.attribute
+		s(...)
+		+x, -x, ~x
+		x ** y
+		*, /, //, %
+		+, -
+		<< , >>
+		&
+		^
+		|
+		<, <=
+		>, >=
+		==, !=
+		is, not is
+		in, not in
+		not
+		and
+		or
+		lambda
+
+	语句
+		赋值语句
+		调用
+		print: 打印对象
+		if/elif/else: 条件判断
+		for/else: 序列迭代
+		while/else: 普通循环
+		pass: 占位符
+		break
+		continue
+		def
+		return
+		yield
+		global: 命名空间
+		raise: 触发异常
+		import: 模块导入
+		from: 模块属性访问
+		class: 类
+		try/except/finally: 捕捉异常
+		del: 删除引用
+		assert: 调试检查
+		with/as: 环境管理器
+
+		赋值语句
+			隐式赋值: import, from, def, class, for, 函数参数
+
+			元组和列表支持分解赋值
+				当赋值符号(=)的左侧为元组或列表时, Python会按照位置把右边的对象和左边的目标自左而右逐一进行配对, 个数不同时会触发异常, 此时可以切片的方式进行
+
+			多重目标赋值
+				num1=num2=num3=44
+
+			增强赋值
+				+=, -=, *=, /=, //=, %=
+
+9. Python流程控制
+	条件测试
+		Python的比较操作
+			所有的PYthon对象都支持比较操作
+				可用于测试相等性, 相对大小等
+				若是复合对象, Python会检查其所有部分, 包括自动遍历各级嵌套对象, 知道可以得出最终结果
+
+			测试操作符
+				"=="操作符测试值的相等性
+				"is"表达式测试对象的一致性
+
+			Python的不同类型的比较方法
+				数字: 通过相对大小进行比较
+				字符串: 按照字典次序逐字符进行比较
+				列表和元组: 自左至右比较各部分内容
+				字典: 对排序之后的(键: 值)列表进行比较
+
+			Python中真和假的含义
+				<1> 任何非0数字和非空对象都为真
+				<2> 数字0, 空对象和特殊对象None均为假
+				<3> 比较和相等测试会递归地应用于数据结构中
+				<4> 返回值为True或False
+
+			组合条件测试
+				X and Y : 与运算
+				X or Y : 或运算
+				not X : 非预算
+
+		if 条件测试表达式
+			expression1 if Boolean_expression expression2
+				A=X if Y else Z
+					if Y:
+						A=X
+					else:
+						A=Z
+
+	while循环
+		用于编写通用迭代结构
+		顶端测试为真即会执行循环体, 并会重复多次测试直到为假后执行循环后的其他语句
+
+		语法格式
+			while Boolean_expression:
+				while_suite
+			else:
+				else_suite
+
+			说明:
+				else分支为可选部分
+				只要Boolean_expression的结果为True, 循环就会执行
+				Boolean_expression的结果为False时会终止循环, 此时若有else分支, 则会执行
+
+				break: 跳出最内层循环
+				continue: 跳到所处的最近层循环的开始处
+				pass: 占位语句
+				else代码块: 循环正常终止才会执行, 若循环终止是由break跳出导致的, 则else不会执行
+
+		例: ①逐一显示指定列表中的所有元素
+			count=0
+			while count<len(l1):
+				print [count]
+				count+=1
+
+			while l1:
+				print l1[0]
+				l1=l1[1:]			# 或l1.pop(0)
+
+			②求100以内所有偶数之和
+				i=0
+				count=0
+				while i<100:
+					if i%2==0:
+						count+=i
+					i+=1
+				else:
+					print count
+
+			③逐一显示指定字典的所有键, 并于显示结束后说明总键数
+				d1={'x':1,'y':23,'z':78}
+				keylist=d1.keys()
+				while keylist:
+					print keylist[0]
+					keylist.pop(0)
+				else:
+					print len(d1)
+
+			④创建一个包含了100以内所有奇数的列表
+				l1=[]
+				x=1
+				while x<100:
+					l1.append(x)
+					x+=2
+				print l1
+
+			⑤逆序逐一显示一个列表的所有元素
+				while l1:
+					print l1[-1]
+					l1=l1[:-1]		# 或l1=pop()
+
+			⑥列表l1=[0,1,2,3,4,5,6], 列表l2=["Sun","Mon","Tue","Wed","Thu","Fir","Sat"], 以第一个列表中的元素为键, 第二个列表中的元素为值生成字典d1
+				d1={}
+				count=0
+				if len(l1)==len(l2):
+					while count<len(l1):
+						d1[l1[count]]=l2[count]
+						count+=1
+					print d1
+
+	for循环
+		一个通用的序列迭代器, 用于遍历任何有序的系列对象的元素
+		可用于字符串, 元组, 列表和其他的内置可迭代对象, 以及通过类所创建的新对象
+
+		语法格式
+			for expression1 in iterable:
+				for_suite
+			else:
+				else_suite
+
+			通常, expression或是一个单独的变量, 或是一个变量序列, 一般以元素的的形式给出
+			若以元组或列表用于expression, 则其中的每个数据项都会拆分到表达式的项, 例如
+				T=[(1,2),(3,4),(5,6),(7,8)]
+				for (a,b) in T:
+					print a,b
+
+		for循环比while循环执行速度快
+		Python提供了两个内置函数, 用于在for循环中定制特殊的循环
+			range或xrange
+				range: 一次性地返回连续的整数列表
+				xrange: 一次产生一个数据元素, 相较于range更节约空间
+			zip
+				返回并行的元素元组的列表, 常用于在for循环中遍历个数序列
+
+	并行遍历
+		zip
+			取得一个或多个序列为参数, 将给定序列中的并排的元素配成元组, 返回这些元组的列表
+				当参数长度不同时, zip会以最短序列的长度为准
+
+			可在for循环中用于实现并行迭代
+				>>> L1=[1,2,3,4,5,6,7]
+				>>> L2=['a','b','c','d','e','f','g']
+				>>> zip(L1,L2)
+				[(1,'a'),(2,'b'),(3,'c'),(4,'d'),(5,'e'),(6,'f'),(9,'g')]
+
+			zip也常用语动态构造字典
+				>>> keys=[1,2,3,4,5,6,7]
+				>>> values=['Mon','Tus','Wed','Thu','Fri','Sat','Sun']
+				>>> D={}
+				>>> for (k,v) in zip(keys,values): D[k]=v
+				...
+				>>> D
+				[1:'Mon',2:'Tus',3:'Wed',4:'Thu',5:'Fri',6:'Sat',7:'Sun']
+
+	产生偏移和元素
+		enumerate
+			range可在非完备遍历中用于生成索引偏移, 而非偏移处的元素
+			若同时需要偏移索引和偏移元素, 则可以使用enumerate()函数
+			此内置函数返回一个生成器对象
+
+			例:
+				>>> S='hello world'
+				>>> E=enumerate(S)
+				>>> E.next()
+				(0,'h')
+				>>> E.next()
+				(1,'e')
+
+	range函数
+		非完备遍历
+			用于每隔一定的个数元素挑选一个元素
+				>>> S='How are you these days?'
+				>>> range(0,len(S),2)
+				[0,2,4,6,8,10,12,14,16,18,20,22]
+				>>> for i in range(0,len(S),2): print S[i]
+				...
+				H w a e y u t e e d y ?
+
+		修改列表
+			>>> L=[1,2,3,4,5]
+			>>> for i in range(len(L)): L[i]+=1
+			...
+			>>> L
+			[2.3.4.5.6]
+
+	Python也提供了一些能够进行隐性迭代的工具
+		in成员关系测试
+		列表解析
+		map, reduce和filter函数
+
+10. Python迭代器和列表
+	增加对象的引用计数的场景
+		对象创建时
+		将对象添加进容器时
+			list.append()
+		当对象被当做参数传递给函数时
+		为对象创建另外的变量名
+
+	减少引用计数的场景
+		引用此对象的某变量名被显式销毁: del x
+		给引用此对象的某变量名重新赋值
+		从容器中移除对象时
+			list.pop()
+		容器本身被销毁
+
+	if
+		if Boolean_expression:
+			...
+		elif Boolean_expression:
+			...
+		else
+			...
+
+	while
+		while Boolean_expression:
+			while_suite
+			if Boolean_expression2: continue
+			if Boolean_expression3: break
+		else
+			else_suite
+
+		例: 提示用户输入列表信息
+			while True:
+				x=raw_input("Enter an entry: ")
+				if x == 'q' or x =='quit':
+					break
+				test.append(x)
+			print test
+
+	for
+		for expression in object:
+			for_suite
+			if Boolean_expression2: continue
+			if Boolean_expression3: break
+		else
+			else_suite
+
+		例
+			① 注意分开显式指定字典d1中的所有元素
+				for (k,v) in d1.items():
+					print k,v
+
+			② 注意电视列表中索引为奇数的元素
+				for i in range(1,len(l1),2):
+					print l1[i]
+
+			③ 将属于列表l1, 单不属于列表l2的所有元素定义为一个新列表l3
+				l3=[]
+				for i in l1:
+					if i not in l2:
+						l3.append(i)
+				print l3
+
+	迭代
+		迭代: 重复做某事
+		iterable(可迭代)对象
+			支持每次返回自己所包含的一个成员的对象
+
+			对象实现了__iter__方法
+				序列类型, 如: list, str, tuple
+				非序列类型, 如: dict, file
+				用户自定义的一些包含了__iter__()或__getitem__()方法的类
+
+		迭代器
+			迭代器(iterator)又称游标(cursor), 他是程序设计的软件设计模式, 是一种可在容器物件(container, 如列表等)上实现元素遍历的接口
+
+			迭代器是一种特殊的数据结构, 当然在Python中,他也是以对象的形式存在的
+				简单理解方式: 对于一个集体中的每一个元素, 想要执行遍历, 那么针对这个集体的迭代器定义了遍历集体中每一个元素的顺序或方法
+
+			在Python中, 迭代器是遵循迭代协议的对象
+			使用iter()可从任何序列对象中得到迭代器
+
+			若要实现迭代器, 需要在类中定义next()方法
+				在Python3中是__next__()
+
+			要使得迭代器指向下一个元素, 则使用成员函数next()
+				在Python中, 是函数next(), 而非成员函数
+
+			当没有元素时, 则引发StopIteration异常
+
+			for循环可用于任何可迭代对象
+				for循环开始时, 会通过迭代协议传递给iter()内置函数, 从而能够从可迭代对象中获得一个迭代器, 返回的对象含有需要的next方法
+
+		Python列表解析
+			列表解析: 根据已有列表, 高效生成新列表的方式
+
+			列表解析是Python迭代机制的一种应用, 他常用于实现创建新的列表, 因此要放置于[]中
+
+			语法
+				[expression for iter_var in iterable]
+
+				[expression for iter_var in iterable if cond_expr]
+
+			例:
+				>>> L1=[1,2,3,4,5]
+				>>> L2=[x**2 for x in L1]
+				>>> L2
+				[1, 4, 9, 16, 25]
+				>>> L3=[i**2 for i in L1 if i>=3]
+				>>> L3
+				[9, 16, 25]
+
+		生成器表达式
+			生成器表达式并不真正创建数字列表, 而是返回一个生成器对象, 此对象在每次计算出一个条目后, 把这个条目"产生"(yield)出来
+				生成器表达式使用了"惰性计算"或称作"延迟求值"的机制
+
+			序列过长, 并且每次只需要获取一个元素时, 应当考虑使用生成器表达式而不是列表解析
+				生成器表达式与Python2.4引入
+
+			函数中使用yield, 会返回一个生成器对象
+
+			语法
+				(expr for iter_var in iterable)
+
+				(expr for iter_var in iterable if cond_expr)
+
+11. Python文件对象
+	文件系统和文件
+		文件系统是OS用于明确磁盘或分区上的文件的方法和数据结构--即在磁盘上组织文件的方法
+
+		计算机文件, 是存储在某种长期存储设备或临时鵆设备中的一段数据流, 并且属于计算机文件系统管理之下
+
+		在Linux系统上, 文件被看做是字节序列
+
+	Python打开文件
+		Python内置函数open()用于打开文件和创建文件对象
+			open(name [,mode[,bufsize]])
+
+		open方法可以接收三个参数: 文件名, 模式和缓冲区参数
+			open函数返回的是一个文件对象
+
+			mode: 指定文件的打开方式
+				简单模式
+					r		只读
+						open('/var'log/message.log','r')
+					w		写入
+					a		附加
+
+				在模式后使用"+"表示同时支持输入, 输出操作
+					如r+, w+和a+
+
+				在模式后附加"b"表示以二进制方式打开
+					如rb, wb+
+
+			bufsize: 定义输出缓存
+				0: 无输出缓存
+				1: 使用缓存, 只缓冲一行数据
+				负数: 使用系统默认设置
+				2+: 指定缓冲区空间大小
+
+		file.seek(offset[,whence])
+			whence:起点
+				0: 从文件头
+				1: 从当前位置
+				2: 从文件尾部
+			offset: 偏移量
+
+	文件系统功能: os
+		目录:
+			chdir()			改变工作目录
+			chroot()		设定当前进程的根目录
+			listdir()		列出指定目录下的所有文件名
+			mkdir()			创建指定目录
+			makedirs()		创建多级目录
+			getcwd()		获取工作目录
+			rmdir()			删除目录
+			removedirs()	删除多级目录
+
+		文件:
+			mkfifo()		创建命名管道
+			mknod()			创建设备文件
+			remove()		删除文件
+			unlink()		删除链接文件
+			rename()		文件重命名
+			stat()			返回文件状态信息
+			symlink()		创建链接文件
+			utime()			更新文件的时间戳
+			tmpfile()		创建并打开(w+b)一个新的临时文件
+
+		访问权限:
+			access()		判断指定用户对文件是否有某权限
+			chmod()			修改权限
+			chown()			修改属主, 属组
+			umask()			设置默认权限遮罩码
+
+		文件描述符
+			open()			根据文件描述符进行底层I/O的open
+			read()			根据文件描述符进行底层I/O的读操作
+			write()			根据文件描述符进行底层I/O的写操作
+
+		设备文件
+			makedev()		根据指定的主次设备号创建设备
+			major()			获取主设备号
+			minor()			获取次设备号
+
+		os.path: 跟文件路径相关
+			basename()		路径基名
+			dirname()		路径目录名
+			join()			连接文件名
+			split()			返回dirname(), basename()元组
+			splitext()		返回(filename, extension)元组
+
+			信息:
+				getatime()		返回文件最近一次的访问时间
+				getctime()		返回文件最近一次的修改时间
+				getmtime()		返回文件最近一次的改变时间
+
+				getsize()		返回文件大小
+
+			查询
+				exists()		判断指定文件是否存在
+				isabs()			判断指定的路径是否为绝对路径
+				isdir()			判断路径是否存在且为目录
+				iffile()		判断文件是否存在且是普通文件
+				iflink()		判断文件是否存在且为符号链接
+				ifmount()		是否为挂载点
+				samefile()		判断两个路径是否指向了同一个文件
+
+		例: 判断文件是否存在, 存在则打开
+			让用户通过键盘反复输入多行数据, 追加保存至此文件中
+				#!/usr/bin/python27
+				import os
+				import os.path
+
+				filename='/tmp/test.txt'
+
+				if os.path.isfile(filename):
+					f1=open(filename,'a+')
+
+				while True:
+					line=raw_input("Enter something> ")
+					if line == 'q' or line == 'quit':
+						break
+					f1.write(line+'\n')
+
+				f1.close()
+
+		对象持久存储
+			pickle
+				任意Python对象和字节串之间的序列化
+
+			marshal
+
+			DBM接口(在Python2.6中叫做anydbm)
+				实现一个可通过键访问的文件系统，可以存储字符串
+
+			shelve模块
+				使用另两个模块按照键把Python对象存储到一个文件中
+
+12. Python正则表达式
+	Python中的正则表达式
+		.			任意单个字符
+		[]			指定范围内的字符
+		[^]			指定范围外的字符
+		?			匹配之前的字符0次或1次
+		+			匹配之前的字符1次或多次
+		{m}			匹配之前的字符m次
+		{m,n}		匹配之前的字符至少m次, 至多n次
+
+		(*|+|?|{})?
+			使用非贪婪模式
+
+		[0-9]		任意数字
+			\d
+		[0-9a-zA-Z]	任意数字或字符
+			\w
+			\W			\w范围以外的
+		\s			空白字符
+			[\n\t\f\v\r]
+			\S			\s以外的
+		\nn
+
+		^			锚定行首
+		$			锚定行尾
+		\b			锚定词首或词尾
+
+		|			或
+		()			分组
+
+	re.search		返回一个match对象
+		match对象
+			属性
+				string		匹配到的字串
+				re			模式
+				pos			搜索串的起始位置
+				endpos		搜索串的结束位置
+			方法
+				group()		匹配到的字符串
+				start()		匹配到的字串的起始位置
+				end()		匹配到的字串的结束位置
+	re.findall		返回列表
+	re.sub			返回替换后的整个串
+	re.subn			返回元组: 替换后的串以及替换次数
+
+	re.compile		手动编译模式对象
+
+	flags
+		I或IGNORECASE: 忽略字符大小写
+		M或MULTILINE: 将^和$应用于包括整个字符串开始和结尾的每一行
+		A或ASCII: 仅执行8位ASCII码匹配
+		U或UNICODE: 使用\w, \W
+
+13. Python函数
+	函数
+		全局函数: 定义在模块中
+		局部函数: 嵌套于其他函数中
+		lambda函数: 表达式
+		方法: 与特定数据类型关联的函数, 并且只能与数据类型关联一起使用
+
+	语法
+		def functionName(parameters):
+			suite
+
+	说明:
+		def是一个可执行语句
+			因此可以出现在任何能够使用语句的地方, 甚至可以嵌套于其他语句, 例如if或while中
+		def创建了一个对象并将其复制给一个变量名(即函数名)
+		return用于返回结果对象, 其为可选, 无return语句的函数自动返回None对象
+			返回多个值时, 彼此间使用逗号分隔, 且组合为元组形式返回一个对象
+		def语句运行之后, 可以在程序中通过函数后附加括号进行调用
+
+	函数作用域
+		Python创建, 改变或查看变量名都是在名称空间中进行
+		在代码中变量名被复制的位置决定了其能被访问到的范围
+		函数定义了本地作用域, 而模块定义了全局作用域
+			每个模块都是一个全局作用域, 因此, 全局作用域的范围仅限于单个程序文件
+			每次对函数的调用会创建一个新的本地作用域, 复制的变量除非声明为全局(global)变量, 否则均为本地变量
+			所有的变量名都可以归纳为本地, 全局或内置的(由__builtin__模块提供)
+
+		变量名解析: LEGB原则
+			Built-in
+				Global
+					Enclosing-function
+						Local
+
+			全局变量
+				全局变量是模块文件内部的顶层的变量名
+				若要在函数内部对全局变量进行赋值的话, 必须事先使用global进行声明
+					global关键字后跟一个或多个逗号隔开的变量名
+
+				全局变量名在函数内部不经声明也可以被引用
+				本地变量在函数返回时会消失, 而全局变量不会, 因此, 使用全局变量是保存函数状态信息的最直接办法
+			尽力避免使用全局变量
+
+	内嵌函数
+		Python中函数可以嵌套, 即可以在一个函数内部定义一个函数
+		在函数内部定义的函数仅能由外层函数进行调用
+
+		Python闭包(Closure)
+			而若外层函数直接把内层函数使用return返回, 则调用外层函数时赋值的变量名引用的是一个内层函数对象, 且此内层函数能够记忆其内部引用的外层函数的变量, 这种行为叫做工厂函数, 也叫闭合函数
+
+	参数的匹配模型
+		默认情况下, 参数通过其位置进行传递, 从左至右, 这意味着, 必须精确地传递和函数头部参数一样多的参数
+
+		但也可以用过关键字参数, 默认参数或参数容器等改变这种机制
+			位置参数: 从左至右, 精确匹配
+			关键字参数: 调用时使用"name=value"的语法通过参数名进行匹配
+
+				混用以上两种方式时, 所有位置参数, 所有的关键字参数
+
+			默认参数: 定义函数时使用"name=value"的语法直接给变量一个值, 从而传入的值可以少于参数个数
+				定义时混用有默认值和无默认值的参数时, 无默认值的要放前面
+
+			可变参数: 定义函数时使用*开头的参数, 可用于收集任意多基于位置或关键字的参数
+				使用**开头, 将参数解析为字典
+
+			可变参数解包: 调用函数时, 使用*开头的参数, 可用于将参数集合打散, 从而传递任意多基于位置或关键字的参数
+
+	匿名函数lambda
+		lambda运算符
+			lambda args: expression
+				args: 以逗号分隔的参数列表
+				expression: 用到args中各参数的表达式
+
+			lambda语句定义的代码必须是合法的表达式, 不能出现多条件语句(可使用if的三元表达式)和其他非表达式语句, 如for和while
+
+			lambda的首要用途是指定短小的回调函数
+
+			lambda将返回一个函数而不是将函数赋值给某变量名
+
+		注意:
+			lambda是一个表达式而非语句
+			lambda是一个单个表达式, 而不是一个代码块
+			def语句创建的函数将赋值给某变量名, 而lambda表达式则直接返回函数
+			lambda也支持使用默认参数
+
+	Python函数式编程
+		函数式编程
+			也称作泛函编程, 是一种编程泛型
+			他将电脑运算视为数学上的函数计算, 并且避免状态以及可变数据
+			函数式编程语言最重要的基础是lambda演算, 而且lambda演算的函数可以接受函数当做输入和输出
+
+		Python支持有限的函数式编程功能
+			functools模块, operator模块
+
+			filter(func, seq)
+				调用一个布尔函数func来迭代遍历每个seq中的元素, 返回一个使func返回值为Ture的元素的序列
+
+				过滤器
+					filter()为已知的序列的每个元素调用给定的布尔函数
+					调用中, 返回值为非零值的元素将被添加至一个列表中
+
+			map(func, seq1[, seq2...])
+				将函数func作用于给定序列(seq)的每个元素, 并用一个列表来提供返回值
+				若func为None, func表现为一盒身份函数, 返回一盒含有每个序列中元素集合的n个元组的列表
+
+				映射器
+					map()将函数调用"映射"到每个序列的对象元素上并返回一个有所有返回值的列表
+
+			reduce(func, seq[, init])
+				将二元函数作用于seq序列的元素, 每次携带一对(先前的结果以及下一个序列元素), 连续地将现有的结果和下一个值作用在获得的随后的结果上, 最后减少我们的序列为一个单一的返回值
+				若初始值init给定, 第一个比较会是init和第一个序列元素而不是序列的头两个元素
+
+	装饰器
+		<1> 装饰器本身是一个函数, 用于装饰其他函数
+		<2> 功能: 增强被装饰函数的功能
+
+		装饰器一般接收一个函数对象作为参数, 以对其进行增强
+
+		例:
+			>>> def deco(func):
+					def wrapper():
+						print("Please input: ")
+						func()
+						print("AAAAAAAA")
+					return wrapper
+			>>> @deco
+					def show():
+						print( "I am Master.")
+			>>> show()
+			Please input:
+			I am Master.
+			AAAAAAAA
+
+	递归
+		递归需要边界条件, 递归前进段和递归返回段
+
+	函数执行环境
+		输入
+			参数
+			全局变量
+			文件/流
+
+		输出
+			return语句
+			可变参数
+			全局变量
+			文件/流
+
+	函数的设计规范
+		耦合性
+			<1> 通过参数接收输入, 以及通过return产生输出以保证函数的独立性
+			<2> 尽量减少使用全局变量进行函数间通信
+			<3> 不要在函数中修改可变类型的参数
+			<4> 避免直接改变定义在另外一个模块中的变量
+
+		聚合性
+			<1> 每个函数都应该有一个单一的, 统一的目标
+			<2> 每个函数的功能都应该相对简单
+
+14. 类
+	OOP(Object Oriented Programming)
+		程序: 指令 + 数据
+
+		两种范型
+			以指令为核心: 围绕"正在发生什么"进行编写
+				面向过程编程: 程序具有一系列线性步骤, 主体思想是代码作用于数据
+
+			以数据为核心: 围绕"将影响谁"进行编写
+				面向对象编程(OOP): 围绕数据及为数据严格定义的接口来组织程序, 用数据控制代码的访问
+
+	类间关系
+		依赖("use-a")
+			一个类的方法操纵另一个类的对象
+		聚合("has-a")
+			类A的对象包含类B的对象
+		继承("is-a")
+			描述特殊与一般关系
+
+	面向对象编程的3原则
+		封装, 继承, 多态
+
+	Python类和实例
+		Python类是一个可调用对象, 即类对象
+		Python2.2之后, 类是一种自定义类型, 而实例则是声明某个自定义类型的变量
+		实例初始化
+			通过调用类来创建实例
+				instance=ClassName(args...)
+			类在实例化时可是使用__init__和__del__两个特殊方法
+
+	Python中创建类
+		语法
+			class ClassName(bases):
+				'class documentation string'
+				classsuite
+		一般形式
+			class ClassName(bases):
+				data=value
+				def method(self, ...):
+					self.member=value
+
+		类体可以包含: 声明语句, 类成员定义, 数据属性, 方法
+
+		注意:
+			若不存在集成关系, ClassName后面的"(bases)"可以不提供
+			类文档为可选
+
+	Python类方法及调用
+		通过实例调用方法相当于调用所属类的方法类处理当前实例
+			类似instance.method(args...)会被转换为
+				class.method(instance, args...)
+
+		每个方法必须有self参数, 他隐含当前实例之意
+		在方法内对self属性做赋值运算会产生每个实例自己的属性
+		Python规定, 没有实例, 方法不允许被调用, 此即为绑定
+
+	Python构造器
+		创建实例时, Python会自动调用类中的__init__方法, 以隐性地为实例提供属性
+			__init__方法被称为构造器
+			若类中没有定义__init__方法, 实例创建之初仅是一个简单的名称空间
+
+	类的特殊属性
+		可以使用类的__dict__字典属性或Python内置的dir()函数来获取类的属性
+			C.__name__		类C的名字(字符串)
+			C.__doc__		类C的文档字符串
+			C.__bases__		类C的所有父类构成的元组
+			C.__dict__		类C的属性
+			C.__module__	类C定义所在的模块
+			C.__class__		实例C对应的类(仅新式类中)
+
+	实例属性
+		实例仅拥有数据属性(严格意义上来讲, 方法是类属性)
+			通常通过构造器__init__为实例提供属性
+			这些数据属性独立于其他实例或类
+			实例释放时, 其属性也将被清除
+
+		内建函数dir()或实例的特殊属性__dict__可用于查看实例属性
+
+		实例的特殊属性
+			I.__class__			实例I所属的类
+			I.__dict__			I的属性
+
+	Python方法中可用的变量
+		方法的可用变量
+			实例变量: 指定变量名称及实例自身进行引用
+				self.变量名
+			局部变量: 方法内部创建的变量, 可直接使用
+			类变量(静态变量): 通过指定变量名与类名进行引用
+				类名.变量名
+			全局变量: 直接使用
+
+	继承
+		一个未指定基类的类, 其默认有一个名为object的基类
+		Python允许多重继承
+
+		创建子类
+			创建子类时, 只需要在类名后跟一个或从其中派生的父类
+
+			class SubClassName(ParentClass1[, ParentClass2, ...]):
+				'optional class documentation string'
+				class_suite
+
+		Python类的继承和属性搜索
+			Python中几乎所有属性的获取都可以使用"object.attribute"的格式
+				此表达式会在Python中启动搜索--搜索连续的树
+
+			class语句会产生一个类对象, 对class的调用会创建实例, 实例自动连接至创建了此实例的一个或多个类
+				类连接至其超类的方式
+					将超类列在类头部的括号内, 其从左至右的顺序会决定树中的次序
+						由下至上, 由左至右
+
+		继承方法专用化
+			继承会先在子类寻找变量名, 然后才查找超类, 因此, 子类可以对超类的属性重新定义类取代继承而来的行为
+				子类可以完全取代从超类继承而来的属性
+				也可以通过已覆盖的方法回调超类来扩展超类的方法
+
+	类, 实例和其他对象的内建函数
+		issubclass()
+			布尔函数, 判断一个类是否由另一个类派生, 语法
+				issubclass(sub, sup)
+
+		isinstance()
+			布尔函数, 判断一个对象是否是给定类的实例, 语法
+				isinstance(obj1, class_obj2)
+
+		hasattr()
+			布尔函数, 判断一个对象是否拥有指定的属性, 语法
+				hasattr(obj, 'attr')
+			同类的函数还有getattr(), setattr(), delattr()
+
+		super()
+			在子类的找出其父类以调用其属性
+			一般情况下仅能采用非绑定方法调用祖先类方法
+			而super()可用于传入实例或类型对象, 语法
+				super(type[, obj])
+
+	基于特殊的方法定制类
+		除了__init__和__del__之外, Python类支持使用许多的特殊方法
+			特殊方法都以双下划线开头和结尾, 有些特殊方法有默认行为, 没有默认行为的是为了留到需要的时候在实现
+			这些特殊方法是Python中用来扩充类的强大工具, 他们可以实现
+				模拟标准类型
+				重载操作符
+			特殊方法允许类通过重载标准操作符+, *, 甚至包括分段下标及映射操作[]类模拟标准类型
+
+		__init__
+			构造函数
+		__del__
+			析构函数
+		__add__
+			运算符+
+		__or__
+			运算符|(位OR)
+		__repr__, __str__
+			打印, 转换
+		__call__
+			函数调用
+		__getattr__
+			点号运算
+		__setattr__
+			属性赋值语句
+		__delattr__
+			属性删除
+		__getattribute__
+			属性获取
+		__getitem__
+			索引运算
+		__setitem__
+			索引赋值语句
+		__delitem__
+			索引和分片删除
+		__len__
+			长度
+		__bool__
+			布尔测试
+		__lt__, __gt__, __le__, __ge__, __eq__, __ne__
+			特定的比较
+		__radd__
+			右侧加法
+		__iadd__
+			实地(增强的)加法
+		__iter__, __next__
+			迭代环境
+		__contains__
+			成员关系测试
+		__index__
+			整数值
+		__enter__, __exit__
+			环境管理器
+		__get__, __set__, __delete__
+			描述符属性
+		__new__
+			创建
+
+	总结:
+		可调用对象(__call__)
+			函数
+				内置函数
+				自定义函数
+					def
+					lambda
+			类
+			类方法
+
+		函数的属性
+			__doc__
+			__name__
+			__dict__
+			__code__
+			__globals__
+
+		方法的属性
+			__doc__
+			__name__
+			__class__:	方法所属的类
+			__func__: 实现该方法的函数对象
+			__self__: 调用此方法的实例
+
+		内置函数
+			__doc__
+			__name__
+			__self__
+
+		类
+			__doc__
+			__name__
+			__bases__
+			__dict__
+			__module__: 定义了当前类的模块名称
+
+		实例
+			__class__
+			__dict__
+
+		对象都有特殊方法
+			__init__, __new__, __del__
+			__dir__
+
+15. Python模块和包
+	可以将代码量较大的程序分割成多个有组织的, 彼此独立但又能互相交互的代码片段, 这些自我包含的有组织的代码段就是模块
+	模块在物理形式上表现为.py结尾的代码文件
+		一个文件被看做一个独立的模块, 一个模块也可以被看做是一个文件
+		模块的文件名就是模块的名字加上扩展名.py
+		每个模块都有自己的名称空间
+
+	Python允许"导入"其他模块一实现代码重用, 从而也实现了将独立的代码文件组织成更大的程序系统
+		Python中, 模块也是对象
+		在一个模块的顶层定义的所有变量都在被导入时称为了被导入模块的属性
+
+	Python程序架构
+		顶层文件: 包含了重新的主要控制流程
+		模块文件: 为顶层文件或其他模块提供各种功能组件
+			模块首次导入(或重载时), Python会执行模块文件的顶层程序代码(不在函数内的代码), 而位于函数主体内的代码直到函数被调用后才会执行
+
+	模块的执行环境
+		模块是被导入的, 但模块也可以导入和使用其他模块, 这些模块可以用Python或其他编程语言写成
+		模块可内含变量, 函数以及类来进行其工作, 而函数和类包含变量和其他元素
+
+	导入模块
+		import语句
+			import module1[, [module2, ...]]
+			import module as module_alias
+
+		from-import语句
+			常用于只导入指定模块的部分属性至当前名称空间
+
+			from module import name1 [, name2, ...]
+
+		import和from-import是隐性赋值语句
+			import将整个模块对象赋值给一个变量名
+			from将一个多个变量名赋值给导入此模块的模块中的同名对象
+
+		import和from-import可以嵌套在if测试中, 出现于def中等
+
+		模块就是名称空间
+			模块的名称空间可以通过属性__dict__或dir(M)获取
+				模块属性可以通过点号(.)运算符获取, 格式为M.attr
+			模块是一个独立的作用域(本地变量就是全局变量)
+
+		import的功过机制
+			import语句导入指定的模块时会执行三个步骤
+				找到模块文件
+					在指定的路径下搜索模块文件
+				编译成字节码
+					文件导入时就会编译, 因此, 顶层文件的.pyc字节码文件在内部使用后会被丢弃, 只有被导入的文件才会留下.pyc文件
+				执行模块的代码来创建其所定义的对象
+
+			注意: 模块只在第一次导入时才会执行如上步骤
+				后期的导入操作只不过是提取内存中已加载的模块对象
+				reload()可用于重新加载模块
+
+	模块搜索
+		程序的主目录
+		PYTHONPATH目录
+		标准链接库目录
+		任何.pth文件的内容
+
+		这四个组件组合起来即为sys.path所包含的路径, 而Python会选择在搜索路径中的第一个符合导入文件名的文件
+
+	Python包
+		包用于将一组模块归并到一个目录中, 此目录即为包, 目录名即为包名
+			包是一个有层次的文件目录结构, 他定义了一个有模块和子包组成的Python应用程序执行环境
+			基于包, Python在执行模块导入时可以指定模块的导入路径
+				import dir1.dir2.mod1
+
+		包导入语句的路径内的每个目录内都必须有__init__.py文件
+			__init__.py可包含Python代码, 但通常为空, 仅用于扮演包初始化的挂钩, 替目录产生模块命名空间已经使用目录导入时实现from *行为的角色
+
+	发布Python模块或程序
+		压缩文件(使用distutils)
+			Windows的zip文件和类Unix平台的.tar.gz文件
+
+			"发布"是指一个文件集合, 这些文件联合在一起可使用distutils构建, 打包和发布模块
+			创建好的发布可以用于安装, 可以上传到PyPI与他人共享
+
+			创建发布
+				将各代码文件组织到模块容器中
+				准备一个README或README.txt文件
+				而后在容器中创建setup.py文件
+					setup.py中setup()中可用的参数
+						name				包的名称(必须)
+						Version				版本号(必须)
+						py_modules			各模块名称组成的列表, 这些模块可能位于包的根目录下, 也可能位于某子包目录中
+						platforms			适用的平台列表
+						packages			各子包名称的列表
+						license				许可证
+						author				作者名称
+						author_email		作者email
+						maintainer			维护者名称
+						maintainer_email	维护者email
+						url					包的主页
+						description			简要描述
+						long_description	详细描述
+						download_url		包的下载位置
+						Classifiers			字符串分类器列表
+
+						大体可分为两类
+							元数据信息
+							包中的内容列表
+
+		自己解包或自动安装可执行文件
+			Windows中的.exe文件
+
+		自包含的, 不要求安装的预备运行可执行程序
+			Windows的.exe文件, Unix上带有一个小的脚本前缀的ZIP压缩文件, Mac上的.app文件等
+
+		平台相关的安装程序
+			Windows平台上的.msi文件, Linux上的.rpm, src.rpm和.deb文件等
+
+		Python eggs
+			较流行的第三方扩展
+
+		打包
+			Python setup.py sdisk
+				为sdisk指定格式: --formats=
+					zip: zip file
+					gztar: tar.gz file
+					bztar: tar.bz2 file
+					ztar: tar.Z file
+					tar: tar file
+
+			python setup.py bdisk
+				为bdisk指定格式: --formats=
+					gztar: tar.gz file
+					ztar: tar.Z file
+					tar: tar file
+					zip: zip file
+					rpm: RPM Package
+					pkgtool: Solaris pkgtool
+					wininst: Windows自解压zip包
+					msi: Microsoft Installer
+				bdisk_dump
+				bdisk_rpm
+				bdisk_wininst
+				bdisk_msi
+
+		获取帮助
+			python setup.py --help
+			python setup.py --help-commands: 所有可以使用的命令, 如build, install等
+			python setup.py COMMAND --help: 获取指定命令的帮助
+			python setup.py COMMAND --help-formats: 获取指定命令支持使用的格式
+
+	pip
+	easy_install
+
+16. python执行环境
+	解释器环境与选项
+		解释器启动
+			python [options] [-c cmd|filename|-] [args]
+			选项
+				-3			启用将从Python3中删除或更改某些功能的警告
+				-B			阻止在导入时创建.pyc或.pyo文件
+				-E			忽略环境变量
+				-h			打印所有可用命令行选项的列表
+				-i			在程序执行后进入交互模式
+				-m module	以脚本的形式运行模块module
+				-O			优化模式
+				-OO			优化模式, 在创建.pyo文件时删除文档字符串
+				-Qarg		指定Python2中除法运算符的行为, 值为-Qold(默认值), -Qnew, -Qwarn或Qwaenall之一
+				-s			阻止将用户电站目录添加到sys.path
+				-S			阻止包含site初始模块
+				-t			报告关于不一致的标签使用警告
+				-tt			由于不一致的标签使用而导致TabError异常
+				-u			未缓存的二进制stdout和stdin
+				-U			Unicode字面量, 所有字符串字面量都以Unicode形式处理(仅在Python2中使用)
+				-v			详细模式, 跟中导入语句
+				-V			打印版本号并退出
+				-x			跳过源程序的第一行
+				-c cmd		以字符串形式执行cmd
+
+		Python解释器环境变量
+			PYTHONPATH
+				以冒号分隔的模块搜索路径
+			PYTHONSTARTUP
+				在以交互方式启动时执行的文件
+			PYTHONHOME
+				Python安装的位置
+			PYTHONINSPECT
+				相当于-i选项
+			PYTHONUNBUFFERED
+				相当于-u选项
+			PYTHONIOENCODING
+				针对stdin, stdout和stderr的编码和错误处理, 这是一个encoding[:errors]形式的字符串, 如utf-8或utf-8:ignore
+			PYTHONOPTIMIZE
+				相当于-O选项
+			PYTHONVERBOSE
+				想当与-v选项
+			PYTHONUSERBASE
+				每个用户站点包的根目录
+			PYTHONCASEOK
+				指示为导入所使用的模块名称使用不区分大小写的匹配方式
+
+17. Python代码测试与调试
+	Python文档字符串
+		若函数, 类或模块的第一行是一个字符串, 这个字符串就称为文档字符串(docstring)
+		内置函数help()或对象的默认方法__doc__可以显示这些文档字符串
+
+	doctest模块
+		doctest模块允许在文档字符串内嵌入注释以显示各种语句的期望行为, 尤其是函数和方法的结构
+			此处的文档字符串看起来如同一个交互式shell会话
+			可用于测试文档是否与程序主体保持同步, 或基于文档对程序本身做测试
+
+		import doctest
+		import test
+		doctest.testmod(test)
+
+	创建可自测试的模块
+		if __name__=='__main__'
+			import doctest
+			doctest.testmod()
+
+18. Python访问MariaDB
+	MySQLdb --> easy_install
+
+	MySQLdb
+		PACKAGE CONTENTS
+			connections
+			constants(package)
+			converters
+			cursors
+			release
+			times
+
+			connection
+				class Connection(_mysql, connection)
+					__init__(self, *args, **kwargs)
+						Create a connection to the database
+						It is strongly recommended that you use keyword parameters
+
+						host: string, host to connect
+						user: string, user to connect as
+						passwd: string, password to use
+						db: string, database to use
+						port: integer, TCP/IP port to connect to
+						unix_socket: string, locating of Unix socket to use
+						connect_timeout: number of seconds to wait before the connection attempt fails
+						compress: if set, compression is enabled
+
+		import MySQLdb as mysql
+
+		建立连接
+			conn=mysql.connect(host='', user='', passwd='', db='')
+		创建游标
+			cur=conn.cursor()
+
+		发送查询
+			sqlstatement='sql statement'
+			cur.execute(sqlstatement)
+			cur.executemany(sqlstatement)
+
+		获取数据
+			cur.execute('select statement')
+			cur.fetchone()
+			cur.fetchmany(N)
+			cur.fetchall()
+				result=cur.fetchall()
+
+		关闭
+			cur.close()
+			conn.close()
+
+19. Python网络编程
+	socket模块
+
+	socket.socket(family, type)
+		family
+			AF_INET
+			AF_UNIX
+		type
+			SOCK_STREAM: tcp
+			SOCK_DGRAM: udp
+
+		如
+			tcpconn=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+	绑定地址
+		使用套接字对象的bind方法绑定于某地址和端口
+
+		tcpconn.bind(('IP', PORT))
+		如
+			tcpconn.bind(('172.16.100.6', 8023))
+
+	使用listen方法进行监听
+		tcpconn.listen(backlog)
+		如
+			tcpconn.listen(100)
+
+	进入循环监听状态
+		使用套接字对象的accept方法接收用户请求
+		accept(socket object, address info)
+
+		如
+			ci,cp=tcpconn.accept()
+				此时会将ip赋值给ci, port赋值给cp, 开始进入阻塞状态
+
+	编写客户端程序
+		<1> 创建一个socket对象, 以连接服务器端
+			clientsock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+		<2> 连接至服务器
+			clientsock.connect(('server_IP', server_PORT))
+
+			clientsock.connect(('172.16.100.7', 8023))
+
+		<3> 发送请求
+			clientsock.send()
+
+	服务器端
+		import socket
+		s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		sa('172.16.100.7', 8023)
+		s.bind(sa)
+		s.listen(20)
+		while True
+			cinfo, caddr=s.accept()
+			print "Got a connect from %s " %caddr[0]
+			data=cinfo.recv(1024)
+			print "Receive data: %s" %data
+			cinfo.send("echo: " + data)
+			cinfo.close()
+	客户端
+		import socket
+		c=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		saddr=('172.16.100.7', 8023)
+		c.connect(saddr)
+		c.send('hello server')
+		data=c.recv(1024)
+		print "Reply from server %s" %data
+
+	Web框架
+		Django
+		Flask
+		Web2py
+		TuborGears
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
