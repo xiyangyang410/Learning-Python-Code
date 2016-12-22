@@ -18,7 +18,6 @@ def commas(N):
         return result
 
 
-
 def money(N, width=0):
     """
     format number N for display with commas, 2 decimal digits,
