@@ -1,27 +1,27 @@
 import sys
 import mytimer
-reps = 1000
+reps = 10000
 repslist = range(reps)
 
 def forLoop():
     res = []
     for x in repslist:
-        res.append(x+10)
+        res.append(abs(x))
     return res
 
 def listComp():
-    return [x+10 for x in repslist]
+    return [abs(x) for x in repslist]
 
 def mapCall():
-    return list(map((lambda x: x+10), repslist))
+    return list(map(abs,repslist))
 
 def genExpr():
-    return list(x+10 for x in repslist)
+    return list(abs(x) for x in repslist)
 
 def genFunc():
     def gen():
         for x in repslist:
-            yield x+10
+            yield abs(x)
     return list(gen())
 
 print(sys.version)
