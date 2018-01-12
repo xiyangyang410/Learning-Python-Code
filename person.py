@@ -52,17 +52,18 @@ class Department:
         for person in self.members:
             print(person)
 
+
 if __name__ == '__main__':
     bob = Person('Bob smith')
     sue = Person('sue jones', job='dev', pay=100000)
     print(bob)
     print(sue)
-    print(bob.lastNmae(), sue.lastNmae())
+    print(bob.lastName(), sue.lastName())
     sue.giveRaise(.10)
     print(sue)
     tom = Manager('Tom jones', 500000)
     tom.giveRaise(.10)
-    print(tom.lastNmae())
+    print(tom.lastName())
     print(tom)
     print('--All three--')
     for object in (bob, sue, tom):

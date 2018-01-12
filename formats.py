@@ -30,6 +30,7 @@ def money(N, width=0):
     format = '%s%s.%s' % (sign, whole, fract)
     return '$%*s' % (width, format)
 
+
 if __name__ == '__main__':
     def selftest():
         tests = 0, 1
@@ -39,7 +40,7 @@ if __name__ == '__main__':
             print(commas(test))
 
         print('')
-        tests = 0, 1, -1, 1.23, 1., 1.2, 3.14159
+        tests = 0, 1, -1, 1.23, 1., 1.2, 3.141595
         tests += 12.34, 12.344, 12.345, 12.346
         tests += 2**32, (2**32 + .2345)
         tests += 1.2345, 1.2, 0.2345

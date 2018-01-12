@@ -15,5 +15,7 @@ def countChars(name):
 def test(name):
     return countLines(name), countChars(name)
 
+
 if __name__ == '__main__':
-    print(test('mymod.py'))
+    print(test(input('Enter file name:')))
+    # print(test('mymod.py'))

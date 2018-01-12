@@ -1,11 +1,8 @@
 # manynames.py
-
 X = 11
-
 
 def f():
     print(X)
-
 
 def g():
     X = 22
