@@ -1,63 +1,46 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python",
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
+            "pythonPath": "${config:python.pythonPath}",
             "program": "${file}",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
             "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
                 "RedirectOutput"
             ]
         },
         {
-            "name": "Python Console App",
+            "name": "Python-Integrated Terminal/Console",
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
+            "pythonPath": "${config:python.pythonPath}",
             "program": "${file}",
-            "externalConsole": true,
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit"
-            ]
+            "cwd": "",
+            "console": "integratedTerminal",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": []
         },
         {
-            "name": "Django",
+            "name": "Python-External Terminal/Console",
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
-            "program": "${workspaceRoot}/manage.py",
-            "args": [
-                "runserver",
-                "--noreload"
-            ],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput",
-                "DjangoDebugging"
-            ]
+            "pythonPath": "${config:python.pythonPath}",
+            "program": "${file}",
+            "cwd": "",
+            "console": "externalTerminal",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": []
         },
-        {
-            "name": "Watson",
-            "type": "python",
-            "request": "launch",
-            "stopOnEntry": true,
-            "program": "${workspaceRoot}/console.py",
-            "args": [
-                "dev",
-                "runserver",
-                "--noreload=True"
-            ],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
-        }
     ]
 }
