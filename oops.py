@@ -1,5 +1,9 @@
+class MyError(Exception):
+    pass
+
+
 def oops():
-    raise IndexError
+    raise MyError('spam!')
 
 
 def doomed():
@@ -7,6 +11,8 @@ def doomed():
         oops()
     except IndexError:
         print('caught an index error!')
+    except MyError as data:
+        print('caught error:', MyError, data)
     else:
         print('no error caught...')
 
